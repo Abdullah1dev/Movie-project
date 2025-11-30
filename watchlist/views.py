@@ -35,3 +35,13 @@ def rate_movie(request , movie_id):
         movie.rating=rating
         movie.save()
         return redirect('movie_list')
+    
+
+#now for delete movie
+
+def delete_movie(request,movie_id):
+    movie=get_object_or_404(Movie , id=movie_id)
+    movie.delete()
+    return redirect('movie_list')
+
+

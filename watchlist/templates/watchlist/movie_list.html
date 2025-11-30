@@ -21,6 +21,7 @@
             <h3>{{ movie.title }} {% if movie.year %}({{ movie.year }}){% endif %}</h3>
             <p><strong>Genre:</strong> {{ movie.genre }}</p>
             <a href="{% url 'mark_watched' movie.id %}"><button>Mark as Watched</button></a>
+            <a href="{% url 'delete_movie' movie.id %}" onclick="return confirm('Delete this movie?')"><button style="background-color: #f44336;">Delete</button></a>
         </div>
         {% endif %}
     {% endfor %}
