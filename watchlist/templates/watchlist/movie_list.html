@@ -12,6 +12,10 @@
 </head>
 <body>
     <h1>🎬 My Movie Watchlist</h1>
+    <form method="GET">
+    <input type="text" name="search" placeholder="Search movies...">
+    <button type="submit">Search</button>
+</form>
     <a href="{% url 'add_movie' %}" class="add-btn">+ Add Movie</a>
     
     <h2>To Watch</h2>
