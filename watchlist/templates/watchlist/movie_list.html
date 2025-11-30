@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Movie Watchlist</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .movie { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .watched { background-color: #e8f5e9; }
+        button { padding: 5px 10px; margin: 5px; cursor: pointer; }
+        .add-btn { background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>🎬 My Movie Watchlist</h1>
+    <a href="{% url 'add_movie' %}" class="add-btn">+ Add Movie</a>
+    
+    <h2>To Watch</h2>
+    {% for movie in movies %}
+        {% if not movie.watched %}
+        <div class="movie">
+            <h3>{{ movie.title }} {% if movie.year %}({{ movie.year }}){% endif %}</h3>
+            <p><strong>Genre:</strong> {{ movie.genre }}</p>
+            <a href="{% url 'mark_watched' movie.id %}"><button>Mark as Watched</button></a>
+        </div>
+        {% endif %}
+    {% endfor %}
+    
+    <h2>Watched</h2>
+    {% for movie in movies %}
+        {% if movie.watched %}
+        <div class="movie watched">
+            <h3>{{ movie.title }} {% if movie.year %}({{ movie.year }}){% endif %}</h3>
+            <p><strong>Genre:</strong> {{ movie.genre }}</p>
+            {% if movie.rating %}
+                <p><strong>Rating:</strong> {{ movie.rating }}/10</p>
+            {% else %}
+                <form method="POST" action="{% url 'rate_movie' movie.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="number" name="rating" min="1" max="10" placeholder="Rate 1-10" required>
+                    <button type="submit">Rate</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

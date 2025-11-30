@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Movie</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px; }
+        input, button { display: block; margin: 10px 0; padding: 10px; width: 100%; }
+        button { background-color: #4CAF50; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Add New Movie</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Movie Title" required>
+        <input type="number" name="year" placeholder="Year (optional)">
+        <input type="text" name="genre" placeholder="Genre (optional)">
+        <button type="submit">Add Movie</button>
+    </form>
+    <a href="{% url 'movie_list' %}">← Back to List</a>
+</body>
+</html>
