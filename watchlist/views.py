@@ -1,9 +1,11 @@
 from django.shortcuts import render , redirect , get_object_or_404
+from django.contrib.auth.decorators import login_required
 #now we import the models class here
 from .models import Movie
 
 
 #for movie list
+@login_required
 def movie_list(request):
     search_query=request.GET.get('search')
     
@@ -14,6 +16,7 @@ def movie_list(request):
     return render(request, 'watchlist/movie_list.html' ,{'movies' : movies} )
 
 #for add movie
+@login_required
 def add_movie(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -34,6 +37,7 @@ def add_movie(request):
     return render(request,'watchlist/add_movie.html')
 
 #for mark as watched 
+@login_required
 def mark_watched(request , movie_id):
     movie=get_object_or_404(Movie , id=movie_id)
     movie.watched=True
@@ -41,6 +45,7 @@ def mark_watched(request , movie_id):
     return redirect('movie_list')
 
 #for rate movie
+@login_required
 def rate_movie(request , movie_id):
     if request.method == 'POST':
         movie = get_object_or_404(Movie , id=movie_id)
@@ -53,7 +58,7 @@ def rate_movie(request , movie_id):
     
 
 #now for delete movie
-
+@login_required
 def delete_movie(request,movie_id):
     movie=get_object_or_404(Movie , id=movie_id)
     movie.delete()
