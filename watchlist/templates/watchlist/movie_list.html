@@ -12,9 +12,10 @@
 </head>
 <body>
     <h1>🎬 My Movie Watchlist</h1>
-    <form method="GET">
-    <input type="text" name="search" placeholder="Search movies...">
-    <button type="submit">Search</button>
+    <form method="GET" style="margin: 20px 0;">
+    <input type="text" name="search" placeholder="Search movies..." style="padding: 10px; width: 300px;">
+    <button type="submit" style="padding: 10px 20px; background-color: #2196F3; color: white; border: none;">Search</button>
+    <a href="{% url 'movie_list' %}" style="margin-left: 10px;">Clear</a>
 </form>
     <a href="{% url 'add_movie' %}" class="add-btn">+ Add Movie</a>
     

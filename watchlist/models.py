@@ -8,7 +8,7 @@ class Movie(models.Model):
     rating=models.IntegerField(null=True , blank=True)
     notes=models.TextField(max_length=300 , blank=True)
     added_date=models.DateTimeField(auto_now_add=True)
-    
+    poster=models.ImageField(upload_to='posters/',blank=True, null=True)
     
     def __str__(self):
         return self.title

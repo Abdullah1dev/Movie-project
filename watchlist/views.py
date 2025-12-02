@@ -17,11 +17,15 @@ def add_movie(request):
         title = request.POST.get('title')
         year=request.POST.get('year')
         genre=request.POST.get('genre')
+        poster=request.FILES.get('poster')
+        
         
         Movie.objects.create(
             title = title,
             year = year if year else None,
-            genre = genre
+            genre = genre,
+            poster=poster,
+            
         )
         
         return redirect('movie_list')
