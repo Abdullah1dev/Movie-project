@@ -40,11 +40,12 @@
             {% if movie.rating %}
                 <p><strong>Rating:</strong> {{ movie.rating }}/10</p>
             {% else %}
-                <form method="POST" action="{% url 'rate_movie' movie.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <input type="number" name="rating" min="1" max="10" placeholder="Rate 1-10" required>
-                    <button type="submit">Rate</button>
-                </form>
+                <form method="POST" action="{% url 'rate_movie' movie.id %}">
+    {% csrf_token %}
+    <input type="number" name="rating" min="1" max="10" placeholder="Rate 1-10" required style="width: 100px; display: inline-block;">
+    <textarea name="notes" placeholder="Write your review..." style="width: 100%; margin-top: 10px; padding: 10px;" rows="3"></textarea>
+    <button type="submit">Submit Rating & Review</button>
+</form>
             {% endif %}
         </div>
         {% endif %}
